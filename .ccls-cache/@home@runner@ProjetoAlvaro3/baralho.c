@@ -16,13 +16,13 @@ carta *criarLista() {
 
   for (int naipe = 1; naipe <= 4; naipe++) {
     // cria os quatro naipes
-    // aqui o for está preenchendo os próximos 
+    // aqui o for está preenchendo os próximos
     // elementos do baralho com 13 cartas em cada passada
     for (int c = 1; c <= 13; c++) {
       p_b->num_carta = c;
       p_b->naipe = naipe;
       p_b->virada = 0;
-      
+
       if (naipe == 4 && c == 13) {
         p_b->proximo = NULL;
       } else {
@@ -39,57 +39,57 @@ carta *criarLista() {
 
 void switchLista(carta *monte) {
   switch (monte->naipe) {
-    case O:
-      if (monte->naipe < 10)
-        printf("|%i %s| ", monte->num_carta, "♦");
-      break;
-    case E:
-      if (monte->num_carta < 10)
-        printf("|%i %s| ", monte->num_carta, "♠");
+  case O:
+    if (monte->naipe < 10)
+      printf("|%i %s| ", monte->num_carta, "♦");
+    break;
+  case E:
+    if (monte->num_carta < 10)
+      printf("|%i %s| ", monte->num_carta, "♠");
 
-      if (monte->num_carta >= 10)
-        printf("|%i%s| ", monte->num_carta, "♠");
-      
-      break;
-    case C:
-      if (monte->num_carta < 10)
-        printf("|%i %s| ", monte->num_carta, "♥");
+    if (monte->num_carta >= 10)
+      printf("|%i%s| ", monte->num_carta, "♠");
 
-      if (monte->num_carta >= 10)
-        printf("|%i%s| ", monte->num_carta, "♥");
-      
-      break;
-    case P:
-      if (monte->num_carta < 10)
-        printf("|%i %s| ", monte->num_carta, "♣");
+    break;
+  case C:
+    if (monte->num_carta < 10)
+      printf("|%i %s| ", monte->num_carta, "♥");
 
-      if (monte->num_carta >= 10)
-        printf("|%i%s| ", monte->num_carta, "♣");
-      
-      break;
-      // fim do switch
-    }
+    if (monte->num_carta >= 10)
+      printf("|%i%s| ", monte->num_carta, "♥");
+
+    break;
+  case P:
+    if (monte->num_carta < 10)
+      printf("|%i %s| ", monte->num_carta, "♣");
+
+    if (monte->num_carta >= 10)
+      printf("|%i%s| ", monte->num_carta, "♣");
+
+    break;
+    // fim do switch
+  }
 }
 
 void imprimeDeck(carta *monte) {
   int i;
-    for (int j = 0; j < 7; j++) {
-      for (int c = 0; c < 20; c++) {
-        switchLista(monte);
-        monte = monte->proximo;
+  for (int j = 0; j < 7; j++) {
+    for (int c = 0; c < 20; c++) {
+      switchLista(monte);
+      monte = monte->proximo;
     }
     printf("\n");
   }
 }
 
 void imprimeLista(carta *monte) {
-  
-  for(int i = 0; i<=51; i ++){
+
+  for (int i = 0; i <= 51; i++) {
     switchLista(monte);
     monte = monte->proximo;
   }
 }
-void imprimeListaReversa(carta * monte){
+void imprimeListaReversa(carta *monte) {
   /*int i;
   for(i = 0; i<=51; i ++){
     //switchLista(monte);
@@ -101,26 +101,27 @@ void imprimeListaReversa(carta * monte){
   }*/
 }
 
-carta * removeNoMonte(carta *monte, int posicao){
+carta *removeNoMonte(carta *monte, int posicao) {
   carta *atual = monte;
-  carta *anterior = NULL;
-  
-  for(int p = 0; p <= posicao; p++){
-    anterior = atual;
+  carta *anterior;
+
+  for (int p = 0; p <= posicao; p++) {
+    anterior = atual->anterior;
     atual = atual->proximo;
+    atual->anterior = anterior;
+    anterior->proximo = atual;
   }
-  if(atual == monte){
-    monte = monte->proximo;
-  }
-  else{
-    anterior->proximo = atual->proximo;
-  }
+
   return atual;
 }
 
-void embaralharMonte(carta *monte){
-  for(int i = 0; i <= 51; i++){
-    monte->proximo = removeNoMonte(monte, rand() % 51);
+void embaralharMonte(carta *monte) {
+  carta *aux;
+  srand(time(NULL));
+  for (int i = 0; i <= 51; i++) {
+    aux = removeNoMonte(monte, 1);
+    monte->proximo = aux->proximo;
+    monte->anterior = aux->anterior;
     monte = monte->proximo;
   }
   monte->proximo = NULL;
