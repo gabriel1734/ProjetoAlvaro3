@@ -28,20 +28,23 @@ carta *criarLista() {
       } else {
         aux = p_b;
         p_b->proximo = (carta *)malloc(sizeof(carta));
-        p_b = p_b->proximo;
+        p_b = p_b->proximo; //PB ATUAL RECEBE O ENDEREÇO DO PROXIMO ELEMENTO
         p_b->anterior = aux;
       }
     }
   }
-
   return monte;
 }
 
 void switchLista(carta *monte) {
   switch (monte->naipe) {
   case O:
-    if (monte->naipe < 10)
+    if (monte->num_carta < 10)
       printf("|%i %s| ", monte->num_carta, "♦");
+
+    if (monte->num_carta >= 10)
+      printf("|%i%s| ", monte->num_carta, "♦");
+
     break;
   case E:
     if (monte->num_carta < 10)
@@ -101,28 +104,41 @@ void imprimeListaReversa(carta *monte) {
   }*/
 }
 
-carta *removeNoMonte(carta *monte, int posicao) {
-  carta *atual = monte;
-  carta *anterior;
+void adicionaNoMonte(carta *monte) {}
 
-  for (int p = 0; p <= posicao; p++) {
-    anterior = atual->anterior;
-    atual = atual->proximo;
-    atual->anterior = anterior;
-    anterior->proximo = atual;
+carta *removeNoMonte(carta *monte, const unsigned int posicao) {
+  carta * aux = NULL;
+  aux = monte->proximo;
+
+  int i;
+
+  if(!monte){
+    printf("Deu ruim!!!");
   }
-
-  return atual;
+  
+  for(i = 1; i<= posicao && aux != NULL; i++){
+    if(i == posicao){
+      monte->proximo = aux->proximo;
+      aux->proximo = aux->anterior;
+      //free(aux)
+    } else{
+      aux = aux->proximo;
+    }
+  }
+  
 }
 
 void embaralharMonte(carta *monte) {
   carta *aux;
-  srand(time(NULL));
-  for (int i = 0; i <= 51; i++) {
-    aux = removeNoMonte(monte, 1);
-    monte->proximo = aux->proximo;
-    monte->anterior = aux->anterior;
-    monte = monte->proximo;
-  }
-  monte->proximo = NULL;
+  int posicao = 2;
+  // srand(time(NULL));
+
+  // for (int i = 0; i <= 50 ; i++) {
+  aux = removeNoMonte(monte, posicao);
+
+  // monte->proximo = aux;
+  // monte->anterior = aux->anterior;
+  monte = monte->proximo;
+  //}
+  // monte->proximo = NULL;
 }

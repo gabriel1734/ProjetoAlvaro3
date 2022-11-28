@@ -12,7 +12,7 @@ typedef struct _carta {
   naipe naipe;
   struct carta *proximo, *anterior;
   short int virada;
-} carta;
+}carta;
 
 
 /*void inserirNoFim(carta *listaCarta);
@@ -21,10 +21,11 @@ void inserirNoMeio(carta *listaCarta);
 void removerNoMeio(carta *listaCarta);
 void inserirNoInicio(carta *listaCarta, carta carta);
 void removerNoInicio(carta *listaCarta);*/
+void adicionaNoMonte(carta * monte);
 void imprimeDeck(carta *monte);
 void imprimeLista(carta *monte);
 void switchLista(carta *monte);
 carta * criaLista();
-carta * removeNoMonte(carta *monte, int posicao);
+carta * removeNoMonte(carta *monte, const unsigned int posicao);
 void embaralharMonte(carta *monte);
 void imprimeListaReversa(carta * monte);
