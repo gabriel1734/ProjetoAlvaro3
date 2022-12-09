@@ -4,6 +4,17 @@
 #include <stdlib.h>
 #include <time.h>
 
+carta * removerNoFim(carta *monte){
+  carta * aux;
+  while(monte->proximo != NULL){
+    aux = monte;
+    monte = monte->proximo;
+  }
+  aux->proximo = NULL;
+  free(monte);
+  return aux; 
+}
+
 carta *criarLista() {
   // seta 0 para todas as cartas
   carta *aux = NULL;
@@ -11,7 +22,7 @@ carta *criarLista() {
   carta *p_b = NULL;
 
   p_b = (carta *)malloc(sizeof(carta));
-  p_b->anterior = NULL;
+  //p_b->anterior = NULL;
   monte = p_b;
 
   for (int naipe = 1; naipe <= 4; naipe++) {
@@ -26,10 +37,10 @@ carta *criarLista() {
       if (naipe == 4 && c == 13) {
         p_b->proximo = NULL;
       } else {
-        aux = p_b;
+        //aux = p_b;
         p_b->proximo = (carta *)malloc(sizeof(carta));
         p_b = p_b->proximo; //PB ATUAL RECEBE O ENDEREÇO DO PROXIMO ELEMENTO
-        p_b->anterior = aux;
+        //p_b->anterior = aux;
       }
     }
   }
@@ -86,12 +97,14 @@ void imprimeDeck(carta *monte) {
 }
 
 void imprimeLista(carta *monte) {
-
-  for (int i = 0; i <= 51; i++) {
+ 
+  while(monte->proximo != NULL) {
     switchLista(monte);
     monte = monte->proximo;
   }
+    switchLista(monte);
 }
+
 void imprimeListaReversa(carta *monte) {
   /*int i;
   for(i = 0; i<=51; i ++){
@@ -104,41 +117,72 @@ void imprimeListaReversa(carta *monte) {
   }*/
 }
 
-void adicionaNoMonte(carta *monte) {}
+void adicionaNoMonte(carta *monte, int num_carta) {
+/*  //carta *novo = (carta*)malloc(sizeof(monte));
+  novo->num_carta = num_carta;
 
-carta *removeNoMonte(carta *monte, const unsigned int posicao) {
-  carta * aux = NULL;
-  aux = monte->proximo;
-
-  int i;
-
-  if(!monte){
-    printf("Deu ruim!!!");
+  if (monte->inicio == NULL) {
+    novo->proximo = NULL;
+    monte->proximo = novo;
+    monte->fim = novo;
+    
   }
-  
-  for(i = 1; i<= posicao && aux != NULL; i++){
-    if(i == posicao){
-      monte->proximo = aux->proximo;
-      aux->proximo = aux->anterior;
-      //free(aux)
-    } else{
-      aux = aux->proximo;
-    }
+  else{
+    novo->proximo = monte->inicio;
+    monte->inicio = novo;
+   
   }
-  
+  monte->TAM++;*/
 }
+
+carta *removeMonte(carta *monte, int posicao){
+	carta *atual = monte;
+	carta *anterior = NULL;
+  printf("%i ", posicao);
+	int c;
+
+	for (c=0;c<posicao;c++) {
+    if (atual->proximo == NULL) {
+      printf("removeMonte tentou remover carta inválida na posição %d.\n", posicao);
+      exit(1);
+    }
+		anterior=atual;
+		atual=atual->proximo;
+	}
+
+	if (atual==monte) {
+    monte=monte->proximo;
+    printf("he");
+  }	else {
+    printf("hello");
+    anterior->proximo = atual->proximo;
+  }
+    
+	return atual;
+}
+
 
 void embaralharMonte(carta *monte) {
   carta *aux;
-  int posicao = 2;
-  // srand(time(NULL));
+  carta *novoM;
+  //int posicao = 2;
 
-  // for (int i = 0; i <= 50 ; i++) {
-  aux = removeNoMonte(monte, posicao);
-
-  // monte->proximo = aux;
-  // monte->anterior = aux->anterior;
-  monte = monte->proximo;
-  //}
+  printf("FG");
+  srand(time(NULL));
+  // unsigned int alea = 0;
+  // alea = rand() %52;
+  aux = removeMonte(monte, rand()%52);
+  
+  adicionaNoMonte(monte, aux);
+  
+  for (int i = 51; i < 0 ; i--) {
+    aux = removeMonte(monte, rand() % i);
+    aux = aux->proximo;
+    //monte->proximo = aux;
+    //monte->anterior = aux->anterior;
+    //monte = monte->proximo;
+  }
   // monte->proximo = NULL;
 }
+
+//https://wagnergaspar.com/lista-encadeada-com-a-linguagem-c/
