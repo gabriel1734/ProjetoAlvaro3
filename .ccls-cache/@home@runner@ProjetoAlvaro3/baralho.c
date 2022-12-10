@@ -29,7 +29,12 @@ carta *removerNoMeio(carta *listaCarta, int aleatorio){
   carta * aux = NULL;
   srand(time(NULL));
   
-  printf("%i", aleatorio);
+  printf("%i ", aleatorio);
+
+  if (!aleatorio){
+    aleatorio = rand() % 51;
+    aleatorio = aleatorio + 1;
+  }
   
   for (int i = 0; i <= aleatorio; i++){
     
@@ -191,13 +196,23 @@ carta *removeMonte(carta *monte, int posicao){
 }
 
 
-void embaralharMonte(carta *monte) {
+carta * embaralharMonte(carta *monte) {
 carta * aux = NULL;
+  int aleatorio;
 srand(time(NULL));
-  for (int i = 51; i >= 0; i--){
-    //aux = removerNoMeiomonte, rand % i;
-    //inserirNoFim(monte, aux);
+  for (int i = 50; i > 0; i--){
+    aleatorio = rand() % (i + 1);
+    if(aleatorio == 0){
+      monte = removerNoInicio(monte);
+    } else if(aleatorio >= 51){
+      aux = removerNoFim(monte);
+    }else{
+      aux = removerNoMeio(monte, aleatorio);
+    }
+    //monte = inserirNoInicio(monte, aux);
+    inserirNoFim(monte, aux);
   }
+  return monte;
 }
 
 //https://wagnergaspar.com/lista-encadeada-com-a-linguagem-c/

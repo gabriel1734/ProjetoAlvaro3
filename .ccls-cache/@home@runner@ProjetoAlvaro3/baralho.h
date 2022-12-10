@@ -8,14 +8,13 @@ typedef enum _naipe {
 typedef struct _carta {
   unsigned int num_carta;
   naipe naipe;
-  struct _carta *proximo, *anterior, *inicio, *fim;
+  struct _carta *proximo;
   short int virada;
-  int TAM;
 } carta;
 
 void inserirNoFim(carta *listaCarta, carta * carta);
-carta *removerNoFim(carta *monte);
-carta *removerNoMeio(carta *listaCarta, int aleatorio);
+carta * removerNoFim(carta *monte);
+carta * removerNoMeio(carta *listaCarta, int aleatorio);
 carta * inserirNoInicio(carta *listaCarta, carta * carta);
 carta * removerNoInicio(carta *listaCarta);
 
@@ -24,9 +23,9 @@ void inserirNoMeio(carta *listaCarta);
 void imprimeDeck(carta *monte);
 void imprimeLista(carta *monte);
 void switchLista(carta *monte);
-carta *criarLista();
-carta *removeMonte(carta *monte, int posicao);
-void embaralharMonte(carta *monte);
+carta * criarLista();
+carta * removeMonte(carta *monte, int posicao);
+carta * embaralharMonte(carta *monte);
 void imprimeListaReversa(carta *monte);
 
 

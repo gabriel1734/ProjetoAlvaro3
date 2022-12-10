@@ -10,17 +10,20 @@ int main(void) {
 
   while (x == 1) {
     carta *monte = criarLista();
-    // embaralharMonte(monte);
+    monte = embaralharMonte(monte);
 
     short int y = 1;
 
     while (y == 1) {
+      
+      carta *aux = NULL;
       system("clear");
       printf("\n\n\n\n");
       imprimeLista(monte);
       printf("\n\n\n\n");
 
-      // imprimeListaReversa(monte);
+       
+      //imprimeListaReversa(monte);
       // imprimeDeck(monte);
 
       printf("\n\nComando: ");
@@ -33,25 +36,25 @@ int main(void) {
       } else if (!strncmp(comandos, "novojogo", 20)) {
         y = 0;
       } else if (!strncmp(comandos, "remover", 20)) {
-        carta *aux;
+        
         aux = removerNoFim(monte);
         printf("%d",aux);
         monte = inserirNoInicio(monte, aux);
         printf("%d \n",monte);
       } else if (!strncmp(comandos, "inicio", 20)) {
-        carta *aux;
+        
         aux = removerNoInicio(monte);
         monte = aux;
         printf("%d \n",monte);
       } else if (!strncmp(comandos, "meio", 20)) {
-        carta *aux;
-        aux = removerNoMeio(monte);
+        
+        aux = removerNoMeio(monte, 10);
         printf("%d \n",monte);
         switchLista(aux);
-        inserirNoFim(monte, aux);
+      //inserirNoFim(monte, aux);
+        monte = inserirNoInicio(monte, aux);
       }
     }
-  }//dia! estou pegando um help aqui do serviço. blz entrei para fazer um commit no git
-
+  }
   return 0;
 }
