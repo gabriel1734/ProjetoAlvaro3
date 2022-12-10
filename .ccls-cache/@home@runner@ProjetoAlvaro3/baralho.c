@@ -98,7 +98,7 @@ carta *criarLista() {
 }
 
 void switchLista(carta *monte) {
-  switch (monte->naipe) {
+    switch (monte->naipe) {
   case O:
     if (monte->num_carta < 10)
       printf("|%i %s| ", monte->num_carta, "♦");
@@ -137,12 +137,55 @@ void switchLista(carta *monte) {
 
 void imprimeDeck(carta *monte) {
   int i;
-  for (int j = 0; j < 7; j++) {
-    for (int c = 0; c < 20; c++) {
-      switchLista(monte);
+  int acumulador;
+  carta * aux = NULL;
+  printf("| * |      | * || * || * || * |\n\n");
+  for (int j = 7; j > 0; j--) {
+    for(i = 0; i < j; i++){
+      aux = monte;
       monte = monte->proximo;
+      //acumulador = acumulador + i;
+      if(j == 7 && i == 0){
+        aux->virada = 1;
+        switchLista(aux);
+        printf("\n");
+      }
+      else if(j == 7 && i == 2){
+        aux->virada = 1;
+        switchLista(aux);
+        printf("\n");
+      }
+      else if(j == 7 && i == 5){
+        aux->virada = 1;
+        switchLista(aux);
+        printf("\n");
+      }
+      else if(j == 6 && i == 2){
+        aux->virada = 1;
+        switchLista(aux);
+        printf("\n");
+      }
+      else if(j == 5 && i == 1){
+        aux->virada = 1;
+        switchLista(aux);
+        printf("\n");
+      }
+      else if(j == 4 && i == 2){
+        aux->virada = 1;
+        switchLista(aux);
+        printf("\n");
+      } else if(j == 1 && i == 0){
+        aux->virada = 1;
+        switchLista(aux);
+        printf("\n");
+      } 
+      else{
+        if(!monte->virada){
+          printf("| * |");
+        }
+      }
     }
-    printf("\n");
+      
   }
 }
 
@@ -154,10 +197,6 @@ void imprimeLista(carta *monte) {
   }
     switchLista(monte);
 }
-
-
-
-
 
 carta * embaralharMonte(carta *monte) {
 carta * aux = NULL;

@@ -8,22 +8,21 @@ int main(void) {
   char comandos[20];
   int ret;
 
-  while (x == 1) {
+  while (x) {
     carta *monte = criarLista();
     monte = embaralharMonte(monte);
 
     short int y = 1;
 
-    while (y == 1) {
+    while (y) {
       
       carta *aux = NULL;
       system("clear");
-      printf("\n\n\n\n");
-      //imprimeLista(monte);
-      printf("\n\n\n\n");
+      //printf("\n\n\n");
+      printf("\n\n\n");
 
        
-      //imprimeDeck(monte);
+      imprimeDeck(monte);
 
       printf("\n\nComando: ");
 
@@ -58,6 +57,8 @@ int main(void) {
         switchLista(aux);
       //inserirNoFim(monte, aux);
         monte = inserirNoInicio(monte, aux);
+      }else if(!strncmp(comandos, "lista", 20)){
+        imprimeLista(monte);
       }
     }
   }
