@@ -29,7 +29,7 @@ carta *removerNoMeio(carta *listaCarta, int aleatorio){
   carta * aux = NULL;
   srand(time(NULL));
   
-  printf("%i ", aleatorio);
+  //printf("%i ", aleatorio);
 
   if (!aleatorio){
     aleatorio = rand() % 51;
@@ -155,45 +155,8 @@ void imprimeLista(carta *monte) {
     switchLista(monte);
 }
 
-void imprimeListaReversa(carta *monte) {
-  /*int i;
-  for(i = 0; i<=51; i ++){
-    //switchLista(monte);
-    monte = monte->proximo;
-  }
-  for(i = 0; i <= 51; i ++){
-    switchLista(monte);
-    monte = monte->anterior;
-  }*/
-}
 
 
-
-carta *removeMonte(carta *monte, int posicao){
-	carta *atual = monte;
-	carta *anterior = NULL;
-  printf("%i ", posicao);
-	int c;
-
-	for (c=0;c<posicao;c++) {
-    if (atual->proximo == NULL) {
-      printf("removeMonte tentou remover carta inválida na posição %d.\n", posicao);
-      exit(1);
-    }
-		anterior=atual;
-		atual=atual->proximo;
-	}
-
-	if (atual==monte) {
-    monte=monte->proximo;
-    printf("he");
-  }	else {
-    printf("hello");
-    anterior->proximo = atual->proximo;
-  }
-    
-	return atual;
-}
 
 
 carta * embaralharMonte(carta *monte) {
@@ -203,7 +166,7 @@ srand(time(NULL));
   for (int i = 50; i > 0; i--){
     aleatorio = rand() % (i + 1);
     if(aleatorio == 0){
-      monte = removerNoInicio(monte);
+      //monte = removerNoInicio(monte);
     } else if(aleatorio >= 51){
       aux = removerNoFim(monte);
     }else{
@@ -214,5 +177,3 @@ srand(time(NULL));
   }
   return monte;
 }
-
-//https://wagnergaspar.com/lista-encadeada-com-a-linguagem-c/

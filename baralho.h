@@ -24,9 +24,9 @@ void imprimeDeck(carta *monte);
 void imprimeLista(carta *monte);
 void switchLista(carta *monte);
 carta * criarLista();
-carta * removeMonte(carta *monte, int posicao);
+//carta * removeMonte(carta *monte, int posicao);
 carta * embaralharMonte(carta *monte);
-void imprimeListaReversa(carta *monte);
+//void imprimeListaReversa(carta *monte);
 
 
 

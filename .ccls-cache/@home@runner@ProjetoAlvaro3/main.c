@@ -19,12 +19,11 @@ int main(void) {
       carta *aux = NULL;
       system("clear");
       printf("\n\n\n\n");
-      imprimeLista(monte);
+      //imprimeLista(monte);
       printf("\n\n\n\n");
 
        
-      //imprimeListaReversa(monte);
-      // imprimeDeck(monte);
+      //imprimeDeck(monte);
 
       printf("\n\nComando: ");
 
@@ -33,20 +32,26 @@ int main(void) {
       if (!strncmp(comandos, "sair", 20)) {
         y = 0;
         x = 0;
-      } else if (!strncmp(comandos, "novojogo", 20)) {
+      } 
+      
+      else if (!strncmp(comandos, "novojogo", 20)) {
         y = 0;
-      } else if (!strncmp(comandos, "remover", 20)) {
+      } 
+      
+      else if (!strncmp(comandos, "remover", 20)) {
         
         aux = removerNoFim(monte);
         printf("%d",aux);
         monte = inserirNoInicio(monte, aux);
         printf("%d \n",monte);
-      } else if (!strncmp(comandos, "inicio", 20)) {
+      } 
+      else if (!strncmp(comandos, "inicio", 20)) {
         
         aux = removerNoInicio(monte);
         monte = aux;
         printf("%d \n",monte);
-      } else if (!strncmp(comandos, "meio", 20)) {
+      } 
+      else if (!strncmp(comandos, "meio", 20)) {
         
         aux = removerNoMeio(monte, 10);
         printf("%d \n",monte);
