@@ -36,6 +36,19 @@ int main(void) {
         carta *aux;
         aux = removerNoFim(monte);
         printf("%d",aux);
+        monte = inserirNoInicio(monte, aux);
+        printf("%d \n",monte);
+      } else if (!strncmp(comandos, "inicio", 20)) {
+        carta *aux;
+        aux = removerNoInicio(monte);
+        monte = aux;
+        printf("%d \n",monte);
+      } else if (!strncmp(comandos, "meio", 20)) {
+        carta *aux;
+        aux = removerNoMeio(monte);
+        printf("%d \n",monte);
+        switchLista(aux);
+        inserirNoFim(monte, aux);
       }
     }
   }//dia! estou pegando um help aqui do serviço. blz entrei para fazer um commit no git

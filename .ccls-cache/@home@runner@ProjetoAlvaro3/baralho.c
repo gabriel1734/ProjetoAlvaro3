@@ -11,8 +11,53 @@ carta * removerNoFim(carta *monte){
     monte = monte->proximo;
   }
   aux->proximo = NULL;
-  free(monte);
-  return aux; 
+  
+  return monte; 
+}
+
+carta * removerNoInicio(carta *listaCarta){
+  carta * aux = NULL;
+  if (listaCarta != NULL){
+    aux = listaCarta;
+    listaCarta = listaCarta->proximo;
+    free (aux);
+  }
+  return listaCarta;
+}
+
+carta *removerNoMeio(carta *listaCarta, int aleatorio){
+  carta * aux = NULL;
+  srand(time(NULL));
+  
+  printf("%i", aleatorio);
+  
+  for (int i = 0; i <= aleatorio; i++){
+    
+    if (listaCarta != NULL){
+      aux = listaCarta;
+      listaCarta = listaCarta->proximo;
+    }
+  } 
+  aux->proximo = listaCarta->proximo;
+
+  return listaCarta;
+}
+
+carta * inserirNoInicio(carta *listaCarta, carta * carta){
+  //carta * aux = NULL;
+  if (listaCarta != NULL){
+    carta->proximo = listaCarta;
+    return carta;
+  }
+}
+
+void inserirNoFim(carta *listaCarta, carta * carta){
+ // carta * aux = NULL;
+  while(listaCarta->proximo != NULL){
+    listaCarta = listaCarta->proximo;
+  }
+  listaCarta->proximo = carta;
+  carta->proximo = NULL;
 }
 
 carta *criarLista() {
@@ -117,23 +162,7 @@ void imprimeListaReversa(carta *monte) {
   }*/
 }
 
-void adicionaNoMonte(carta *monte, int num_carta) {
-/*  //carta *novo = (carta*)malloc(sizeof(monte));
-  novo->num_carta = num_carta;
 
-  if (monte->inicio == NULL) {
-    novo->proximo = NULL;
-    monte->proximo = novo;
-    monte->fim = novo;
-    
-  }
-  else{
-    novo->proximo = monte->inicio;
-    monte->inicio = novo;
-   
-  }
-  monte->TAM++;*/
-}
 
 carta *removeMonte(carta *monte, int posicao){
 	carta *atual = monte;
@@ -163,26 +192,12 @@ carta *removeMonte(carta *monte, int posicao){
 
 
 void embaralharMonte(carta *monte) {
-  carta *aux;
-  carta *novoM;
-  //int posicao = 2;
-
-  printf("FG");
-  srand(time(NULL));
-  // unsigned int alea = 0;
-  // alea = rand() %52;
-  aux = removeMonte(monte, rand()%52);
-  
-  adicionaNoMonte(monte, aux);
-  
-  for (int i = 51; i < 0 ; i--) {
-    aux = removeMonte(monte, rand() % i);
-    aux = aux->proximo;
-    //monte->proximo = aux;
-    //monte->anterior = aux->anterior;
-    //monte = monte->proximo;
+carta * aux = NULL;
+srand(time(NULL));
+  for (int i = 51; i >= 0; i--){
+    //aux = removerNoMeiomonte, rand % i;
+    //inserirNoFim(monte, aux);
   }
-  // monte->proximo = NULL;
 }
 
 //https://wagnergaspar.com/lista-encadeada-com-a-linguagem-c/

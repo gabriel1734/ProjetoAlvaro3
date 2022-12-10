@@ -10,7 +10,7 @@ int main(void) {
 
   while (x == 1) {
     carta *monte = criarLista();
-    // embaralharMonte(monte);
+    embaralharMonte(monte);
 
     short int y = 1;
 
@@ -36,9 +36,22 @@ int main(void) {
         carta *aux;
         aux = removerNoFim(monte);
         printf("%d",aux);
+        monte = inserirNoInicio(monte, aux);
+        printf("%d \n",monte);
+      } else if (!strncmp(comandos, "inicio", 20)) {
+        carta *aux;
+        aux = removerNoInicio(monte);
+        monte = aux;
+        printf("%d \n",monte);
+      } else if (!strncmp(comandos, "meio", 20)) {
+        carta *aux;
+        aux = removerNoMeio(monte, 10);
+        printf("%d \n",monte);
+        switchLista(aux);
+      //inserirNoFim(monte, aux);
+        monte = inserirNoInicio(monte, aux);
       }
     }
-  }//dia! estou pegando um help aqui do serviço. blz entrei para fazer um commit no git
-
+  }
   return 0;
 }
