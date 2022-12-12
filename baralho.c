@@ -120,7 +120,7 @@ void switchLista(carta *monte) {
       printf("|%i %s| ", monte->num_carta, "♥");
 
     if (monte->num_carta >= 10)
-      printf("|%i %s| ", monte->num_carta, "♥");
+      printf("|%i%s| ", monte->num_carta, "♥");
 
     break;
   case P:
@@ -128,7 +128,7 @@ void switchLista(carta *monte) {
       printf("|%i %s| ", monte->num_carta, "♣");
 
     if (monte->num_carta >= 10)
-      printf("|%i %s| ", monte->num_carta, "♣");
+      printf("|%i%s| ", monte->num_carta, "♣");
 
     break;
     // fim do switch
