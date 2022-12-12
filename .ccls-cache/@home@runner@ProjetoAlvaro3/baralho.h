@@ -13,7 +13,7 @@ typedef struct _carta {
 } carta;
 
 void inserirNoFim(carta *listaCarta, carta * carta);
-carta * removerNoFim(carta *monte);
+carta * removerNoFim(carta *listaCarta);
 carta * removerNoMeio(carta *listaCarta, int aleatorio);
 carta * inserirNoInicio(carta *listaCarta, carta * carta);
 carta * removerNoInicio(carta *listaCarta);

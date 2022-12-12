@@ -4,15 +4,15 @@
 #include <stdlib.h>
 #include <time.h>
 
-carta * removerNoFim(carta *monte){
+carta * removerNoFim(carta *listaCarta){
   carta * aux;
-  while(monte->proximo != NULL){
-    aux = monte;
-    monte = monte->proximo;
+  while(listaCarta->proximo != NULL){
+    aux = listaCarta;
+    listaCarta = listaCarta->proximo;
   }
   aux->proximo = NULL;
   
-  return monte; 
+  return listaCarta; 
 }
 
 carta * removerNoInicio(carta *listaCarta){
