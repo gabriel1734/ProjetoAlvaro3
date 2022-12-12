@@ -17,7 +17,6 @@ carta * removerNoFim(carta *monte);
 carta * removerNoMeio(carta *listaCarta, int aleatorio);
 carta * inserirNoInicio(carta *listaCarta, carta * carta);
 carta * removerNoInicio(carta *listaCarta);
-
 void inserirNoMeio(carta *listaCarta);
 //void adicionaNoMonte(carta *monte, int num_carta);
 void imprimeDeck(carta *monte);
@@ -27,8 +26,3 @@ carta * criarLista();
 //carta * removeMonte(carta *monte, int posicao);
 carta * embaralharMonte(carta *monte);
 //void imprimeListaReversa(carta *monte);
-
-
-
-
-
